@@ -7,3 +7,8 @@ train:
 		-v `pwd`:/notebooks \
 		-v /data/scratch/rcurrie/tumornormal:/notebooks/data \
 		gcr.io/tensorflow/tensorflow bash
+
+train-patternlab:
+	docker exec -it jupyter jupyter nbconvert --to script tumornormal/train.ipynb
+	scp train.py rcurrieucscedu@patternlab.calit2.optiputer.net:~
+	ssh rcurrieucscedu@patternlab.calit2.optiputer.net "source env/bin/activate && DEBUG=False python train.py"
