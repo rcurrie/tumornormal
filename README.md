@@ -4,6 +4,6 @@ See if it's possible to train a deep neural network tumor/normal binary classifi
 
 https://xenabrowser.net/datapages/?host=https://toil.xenahubs.net)
 
-If we can, then see whether any of the early layers re-capitulates the COSMIC cancer gene census:
+To get started look at ingest.ipynb to see how the original data is wrangled for ML.
 
-http://cancer.sanger.ac.uk/census/
+Then look at train.ipynb
