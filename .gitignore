@@ -1,3 +1,8 @@
 .git
-data
 .ipynb_checkpoints
+.ipython/
+.jupyter/
+.keras/
+.local/
+data/
+models/
