@@ -1,8 +1,10 @@
 .git
+.bash_history
 .ipynb_checkpoints
 .ipython
 .jupyter
 .keras
 .local
+.cache
 data
 models

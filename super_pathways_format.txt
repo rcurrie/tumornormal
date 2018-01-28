@@ -1,0 +1,66 @@
+UCSC Pathway Tab Format
+
+Paradigm requires provided pathway files to be provided in the UCSC
+Pathway Tab Format. This format is designed to be an extremely simple
+representation of a pathway. Each line in the file either defines the
+type of an entity, or an interaction between two entities. Entity
+definition lines are distinguished from interaction lines by the
+number of fields on the line: entity definitions have two
+tab-separated fields, whereas interaction lines have three
+tab-separated fields.
+
+A simple example:
+
+   protein     TP53
+   protein     MDM2
+   abstract    apoptosis
+   MDM2        TP53         -a|
+   TP53        apoptosis    -a>
+
+This example consists of three lines defining entities, followed by
+two lines defining interactions.
+
+Entity Definition Lines
+
+An entity definition line is a two-field tab-delimited line that
+associates a biological type (the first field) to an identifier (the
+second field). In the example above, TP53 and MDM2 are identified as
+proteins, and apoptosis as abstract (an abbreviation for "abstract
+process"). Any identifier can be used as the biological type, but
+currently these are in common use:
+
+   protein       a protein-coding gene **
+   chemical      a small-molecule, such as GTP
+   complex       a non-covalently-bound collection of other molecules,
+                 such as proteins, small molecules, etc.
+   family        a gene family that performs a similar function (e.g.
+                 the RAS family, consisting of HRAS, NRAS, and KRAS)
+   abstract      an abstract process, such as apoptosis
+
+If an entity ID is encountered in a UCSC Pathway Tab format, and it is
+not explicitly assigned an entity type, then the entity defaults to
+the 'protein' type.
+
+Interaction Definition Lines
+
+Interaction definition lines consist of three tab-separated fields:
+
+ parent_id  child_id  interaction_type
+
+Currently, all our interaction types are directional, and there is no
+support for undirected edges. Therefore it's important to maintain the
+order of the first and second field. The edge types currently in use
+are:
+
+   -a>          the parent promotes the activity of the child
+   -a|          the parent inhibits the activity of the child
+   -t>          the parent transcriptionally activates the child
+   -t|          the parent transcriptionally inhibits the child
+   -ap>         the parent activates the child, and either the parent
+                or child is an abstract process is an abstract process
+   -ap|         the parent inhibits the child, and either the parent
+                or child is an abstract process is an abstract process
+   component>   the child is a complex, and the parent is a component
+                of that complex
+   member>      the child is a gene family, and the parent is a
+                component of that family
